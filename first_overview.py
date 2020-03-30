@@ -1,4 +1,6 @@
 import pandas as pd
+from nltk import FreqDist
+from nltk.tokenize import word_tokenize
 
 # Read datasets
 sugerencias = pd.read_csv("datasets/sugerencias.csv", parse_dates=["Fecha"]).drop_duplicates()
@@ -18,3 +20,17 @@ sugerencias.columns = ["institution", "is_info_useful", "missing_info", "improve
 sugerencias["institution"] = sugerencias["institution"].apply(lambda string: string.split('-')[0])
 # Map is_info_useful to boolean values
 sugerencias["is_info_useful"] = sugerencias["is_info_useful"].map({"Sí": 1, "No": 0})
+
+# Word's frequency - missing_info
+text1 = "\n".join(sugerencias["missing_info"].dropna().values)
+words1 = word_tokenize(text1)
+fdist1 = FreqDist(words1)
+print(fdist1.most_common(50))
+fdist1.plot(50)
+
+# Word's frequency - improvements
+text2 = "\n".join(sugerencias["improvements"].dropna().values)
+words2 = word_tokenize(text2)
+fdist2 = FreqDist(words2)
+print(fdist2.most_common(50))
+fdist2.plot(50)
