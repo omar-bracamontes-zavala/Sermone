@@ -4,7 +4,6 @@ from nltk.tokenize import word_tokenize
 
 # Read datasets
 sugerencias = pd.read_csv("datasets/sugerencias.csv", parse_dates=["Fecha"]).drop_duplicates()
-# homoclaves = pd.read_csv("datasets/homoclaves.csv") # We don't need this dataset
 
 # Analyze relation between column E and F
 x = sugerencias[sugerencias["1.2 ¿Consideras que falta información?"] == "No"]["1.3 ¿Qué información crees que falta?"]
