@@ -78,7 +78,6 @@ if __name__ == "__main__":
             # Loop through all rows by index
             for i in tqdm(data.index):
                 response = analyze_sentiment(data.loc[i, col], client, language=language)
-                print(response)
                 data.loc[i, f"{col}_gscore"] = response.document_sentiment.score
                 data.loc[i, f"{col}_gmagnitude"] = response.document_sentiment.magnitude
                 sleep(0.5)
