@@ -65,7 +65,9 @@ if __name__ == "__main__":
     # Get client from google api
     client = language_v1.LanguageServiceClient()
 
-    for language in ['es', 'en']:
+    
+    # ['es', 'en']	
+    for language in ['en']:
         # Read csv file
         data = read_csv(file_name)
         # Select columns to process
